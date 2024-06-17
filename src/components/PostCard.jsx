@@ -1,10 +1,10 @@
-import service from "../appwrite/conf_service"
 import { Link } from "react-router-dom"
 
 export default function PostCard({
     $id,
     title,
     featuredImage,
+    imageUrl,
     status,
     statusToBeShown = false,
 }) {
@@ -13,7 +13,7 @@ export default function PostCard({
             <div className=" flex h-full w-full flex-col justify-between gap-2 rounded-xl bg-gray-800 p-4 text-gray-100 transition hover:scale-105">
                 <div className="flex h-5/6 w-full justify-center ">
                     <img
-                        src={service.getFilePreview(featuredImage)}
+                        src={imageUrl}
                         alt={title}
                         className="w-full rounded-xl"
                     />

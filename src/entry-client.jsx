@@ -9,17 +9,15 @@ import { createStore } from "./store/store.js";
 
 const preloadedState = window.__PRELOADED_STATE__;
 
+const store = createStore(preloadedState);
 delete window.__PRELOADED_STATE__;
 
-const store = createStore(preloadedState);
 
 ReactDOM.hydrateRoot(
     document.getElementById("root"),
     <Provider store={store}>
-        <React.StrictMode>
-            <BrowserRouter>
-                <AppRoutes />
-            </BrowserRouter>
-        </React.StrictMode>
+        <BrowserRouter>
+            <AppRoutes initialPosts={window.__INITIAL_POSTS__} />
+        </BrowserRouter>
     </Provider>
 );

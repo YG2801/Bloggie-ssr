@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 export default function AllPosts() {
     const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
     const userData = useSelector((state) => state.auth.userData)
     useEffect(() => {
         appwriteService
@@ -18,17 +18,18 @@ export default function AllPosts() {
                 }
             })
             .finally(() => {
-                setLoading(false)
+                // setLoading(false)
             })
     }, [])
 
-    if (loading) {
-        return (
-            <div className="flex justify-center">
-                <Loader />
-            </div>
-        )
-    } else if (posts.length === 0) {
+    // if (loading) {
+    //     return (
+    //         <div className="flex justify-center">
+    //             <Loader />
+    //         </div>
+    //     )
+    // } else 
+    if (posts.length === 0) {
         return (
             <div className="mt-4 w-full py-8 text-center">
                 <Container>

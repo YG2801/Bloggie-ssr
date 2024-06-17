@@ -7,7 +7,7 @@ import { login, logout } from "./store/authSlice";
 import { Outlet } from "react-router-dom";
 
 export default function App() {
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,11 +24,11 @@ export default function App() {
                 console.log(error);
             })
             .finally(() => {
-                setLoading(false);
+                // setLoading(false);
             });
     }, []);
 
-    return !loading ? (
+    return (
         <div className="flex min-h-screen flex-col justify-between">
             <Header />
             <main>
@@ -36,5 +36,5 @@ export default function App() {
             </main>
             <Footer />
         </div>
-    ) : null;
+    );
 }

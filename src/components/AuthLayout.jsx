@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 
 export default function Protected({ children, authentication = true }) {
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
     const authStatus = useSelector((state) => state.auth.status)
 
     useEffect(() => {
@@ -13,8 +13,9 @@ export default function Protected({ children, authentication = true }) {
         } else if (!authentication && authStatus !== authentication) {
             navigate("/")
         }
-        setLoading(false)
+        // setLoading(false)
     }, [authStatus, authentication, navigate])
 
-    return loading ? <h1>Loading...</h1> : <>{children}</>
+    // return loading ? <h1>Loading...</h1> : <>{children}</>
+    return <>{children}</>
 }

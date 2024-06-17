@@ -12,11 +12,12 @@ import {
 } from "./pages/index";
 import { AuthLayout } from "./components/index.js";
 
-function AppRoutes() {
+function AppRoutes({ initialPosts }) {
+    // console.log("Routes: ",initialPosts);
     return (
         <Routes>
             <Route path="/" element={<App />}>
-                <Route index element={<Home />} />
+                <Route index element={<Home initialPosts={initialPosts}/>} />
                 <Route
                     path="login"
                     element={

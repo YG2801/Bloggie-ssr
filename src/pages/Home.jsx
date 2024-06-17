@@ -1,49 +1,53 @@
-import React, { useEffect, useState } from "react"
-import { Container, Loader, PostCard } from "../components"
-import appwriteService from "../appwrite/conf_service"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { Query } from "appwrite"
+import React, { useEffect, useState } from "react";
+import { Container, Loader, PostCard } from "../components";
+import appwriteService from "../appwrite/conf_service";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Query } from "appwrite";
 
-export default function Home() {
-    const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(true)
-    const authStatus = useSelector((state) => state.auth.status)
+export default function Home({ initialPosts }) {
+    const [posts, setPosts] = useState(initialPosts || []);
+    // console.log("Home: ", posts)
+    
+    // const [loading, setLoading] = useState(true)
+    // const authStatus = useSelector((state) => state.auth.status);
 
-    useEffect(() => {
-        appwriteService
-            .getPosts([Query.equal("status", "active")])
-            .then((res) => {
-                if (res) {
-                    setPosts(res.documents)
-                }
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [])
+    // useEffect(() => {
+    //     appwriteService
+    //         .getPosts([Query.equal("status", "active")])
+    //         .then((res) => {
+    //             if (res) {
+    //                 setPosts(res.documents)
+    //             }
+    //         })
+    //         .finally(() => {
+    //             // setLoading(false)
+    //         })
+    // }, [])
 
-    if (loading) {
-        return (
-            <div className="flex justify-center">
-                <Loader />
-            </div>
-        )
-    } else if (!authStatus) {
-        return (
-            <div className="mt-4 w-full py-8 text-center">
-                <Container>
-                    <div className="flex flex-wrap">
-                        <div className="w-full p-2">
-                            <h1 className="text-2xl font-bold">
-                                Login to read posts
-                            </h1>
-                        </div>
-                    </div>
-                </Container>
-            </div>
-        )
-    } else if (posts.length === 0) {
+    // if (loading) {
+    //     return (
+    //         <div className="flex justify-center">
+    //             <Loader />
+    //         </div>
+    //     )
+    // } else
+    // if (!authStatus) {
+    //     return (
+    //         <div className="mt-4 w-full py-8 text-center">
+    //             <Container>
+    //                 <div className="flex flex-wrap">
+    //                     <div className="w-full p-2">
+    //                         <h1 className="text-2xl font-bold">
+    //                             Login to read posts
+    //                         </h1>
+    //                     </div>
+    //                 </div>
+    //             </Container>
+    //         </div>
+    //     );
+    // } else 
+    if (posts.length === 0) {
         return (
             <div className="mt-4 w-full py-8 text-center">
                 <Container>
@@ -63,7 +67,7 @@ export default function Home() {
                     </div>
                 </Container>
             </div>
-        )
+        );
     }
 
     return (
@@ -78,5 +82,5 @@ export default function Home() {
                 </div>
             </Container>
         </div>
-    )
+    );
 }
