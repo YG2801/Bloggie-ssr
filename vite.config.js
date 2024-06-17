@@ -8,15 +8,11 @@ export default defineConfig({
         noExternal: ["react-router-dom", "react-redux", "@reduxjs/toolkit"],
     },
     build: {
-        outDir: "dist/client",
         rollupOptions: {
-            input: "/src/entry-client.jsx",
-        },
-    },
-    ssr: {
-        outDir: "dist/server",
-        rollupOptions: {
-            input: "/src/entry-server.jsx",
+            input: {
+                client: "src/entry-client.jsx",
+                server: "src/entry-server.jsx",
+            },
         },
     },
 });
